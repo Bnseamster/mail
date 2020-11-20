@@ -1,0 +1,60 @@
+{% extends "mail/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <h2>{{ request.user.email }}</h2>
+
+    <button class="btn btn-sm btn-outline-primary" id="inbox">Inbox</button>
+    <button class="btn btn-sm btn-outline-primary" id="compose">Compose</button>
+    <button class="btn btn-sm btn-outline-primary" id="sent">Sent</button>
+    <button class="btn btn-sm btn-outline-primary" id="archived">Archived</button>
+    <a class="btn btn-sm btn-outline-primary" href="{% url 'logout' %}">Log Out</a>
+    <hr>
+
+    <div id="emails-view">
+        <ul id="email-items">
+
+        </ul>
+    </div>
+
+    <div id="email">
+        <ul id="email-items">
+
+        </ul>
+    </div>
+    <div id="archived-items">
+        
+    </div>
+
+    <div id="compose-view" >
+        <h3 id="compose-email-header">New Email</h3>
+        <div id="email-sent-alert" class="alert alert-success alert-dismissible fade show" role="alert">
+            Email Sent!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <form id="newEmail" onsubmit="return submit_form()">
+            <div class="form-group">
+                From: <input disabled class="form-control" value="{{ request.user.email }}">
+            </div>
+            <div class="form-group">
+                To: <input id="compose-recipients" class="form-control">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="compose-subject" placeholder="Subject">
+            </div>
+            <textarea class="form-control" id="compose-body" placeholder="Body"></textarea>
+            <input id="send-button" type="submit" class="btn btn-primary" value="Send"/>
+        </form>
+    </div>
+
+    <div id="reply-view" style='display: none;' >
+
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="{% static 'mail/inbox.js' %}" defer></script>
+{% endblock %}

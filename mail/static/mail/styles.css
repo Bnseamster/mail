@@ -1,0 +1,12 @@
+textarea {
+    min-height: 400px;
+}
+
+#email-sent-alert{
+    display: none;
+}
+
+.list-group{
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
